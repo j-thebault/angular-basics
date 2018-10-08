@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 
 
+
+interface Child {
+  name: string;
+  age: number;
+}
 interface Passenger {
   id: number;
   fullname: string;
   checkedIn: boolean;
   checkInDate?: number;
+  children?: Child[];
 }
 @Component({
   selector: 'app-root',
@@ -19,6 +25,9 @@ interface Passenger {
       <div class="date">
         Check in Date :
         {{passenger.checkedIn ?  (passenger.checkInDate | date: 'y MMMM dd') : 'Not Check In'}}
+      </div>
+      <div class="children">
+        Children : {{passenger.children?.length || 0}}
       </div>
       </li>
       </ul>
@@ -36,7 +45,8 @@ export class AppComponent {
   }, {
     id : 2,
     fullname : 'Rose',
-    checkedIn : false
+    checkedIn : false,
+    children: [{name: 'Todd', age: 12}, { name: 'Titi', age: 15}]
   }, {
     id : 3,
     fullname : 'James',
