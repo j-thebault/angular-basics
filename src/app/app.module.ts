@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     BrowserModule,
-    CommonModule
+    CommonModule,
+    PassengerDashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
