@@ -1,34 +1,48 @@
 import { Component } from '@angular/core';
 
+
+interface Passenger {
+  id: number;
+  fullname: string;
+  checkedIn: boolean;
+}
 @Component({
   selector: 'app-root',
   template: `
     <div class="app">
-      <input type="text" #username (input)="handleChange($event.target.value)">
-
-    <ng-template [ngIf]="name.length > 2">
-      <div> Searching for : {{name}}</div>
-    </ng-template>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+          {{ i }} : {{passenger.fullname}}
+        </li>
+      </ul>
+      <ul>
+      <ng-template ngFor let-passenger let-i="index" [ngForOf]="passengers">
+      <li>
+      {{ i }} : {{passenger.fullname}}
+        </li>
+      </ng-template>
+    </ul>
     </div>
   `,
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  title = 'Ultimate Angular';
-  numberOne = 1;
-  numberTwo = 2;
-  isHappy = true;
-  name = '';
-  twoWayName = 'Hello';
-
-  constructor() {}
-
-  private handleClick(value: string) {
-    console.log('handle click');
-    this.name = value;
-  }
-
-  handleChange(value: string) {
-    this.name = value;
-  }
+  passengers: Passenger [] = [{
+    id : 1,
+    fullname : 'Stephen',
+    checkedIn : true
+  }, {
+    id : 2,
+    fullname : 'Rose',
+    checkedIn : false
+  }, {
+    id : 3,
+    fullname : 'James',
+    checkedIn : true
+  }, {
+    id : 4,
+    fullname : 'Louise',
+    checkedIn : true
+  }];
 }
