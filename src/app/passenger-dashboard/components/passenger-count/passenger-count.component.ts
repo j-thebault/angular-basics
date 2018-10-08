@@ -5,7 +5,7 @@ import { Passenger } from '../../model/passenger.interface';
   selector: 'app-passenger-count',
   styleUrls: ['./passenger-count.scss'],
   template: `
-    Total Checked in :  {{checkedInCount()}} / {{items.length}}
+    Total Checked in :  {{checkedInCount()}} / {{items?.length}}
   `
 })
 export class PassengerCountComponent implements OnInit {
