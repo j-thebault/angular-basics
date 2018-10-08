@@ -10,12 +10,18 @@ import { Passenger } from '../../model/passenger.interface';
     <div>
     <h3>Airline Passengers</h3>
     <app-passenger-count [items]="passengers"></app-passenger-count>
+
+
+    <div *ngFor="let passenger of passengers">
+      {{passenger.fullname}}
+    </div>
+
     <app-passenger-detail *ngFor="let passenger of passengers"
       [detail]="passenger"
       (remove)="handleRemove($event)"
       (edit)="handleEdit($event)">
-
     </app-passenger-detail>
+
     </div>
   `
 })
