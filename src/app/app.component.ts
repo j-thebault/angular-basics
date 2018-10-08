@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div class="app">
-      <button (click)="handleClick(username.value)"> Click Me </button>
-      <input type="text" #username>
-      <div>{{name}}</div>
+      <input type="text" #username (input)="handleChange($event.target.value)">
+
+    <ng-template [ngIf]="name.length > 2">
+      <div> Searching for : {{name}}</div>
+    </ng-template>
     </div>
   `,
   styleUrls: ['app.component.scss']
@@ -16,17 +18,17 @@ export class AppComponent {
   numberOne = 1;
   numberTwo = 2;
   isHappy = true;
-  name = 'Tood';
+  name = '';
   twoWayName = 'Hello';
 
   constructor() {}
 
-  private handleClick(value:string) {
+  private handleClick(value: string) {
     console.log('handle click');
-    console.log(value);
+    this.name = value;
   }
 
   handleChange(value: string) {
-    this.twoWayName = value;
+    this.name = value;
   }
 }
