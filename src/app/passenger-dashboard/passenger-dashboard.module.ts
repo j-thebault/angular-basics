@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dahboard.component';
 import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
@@ -9,7 +10,7 @@ import { PassengerDashboardService } from './passenger-dashboard.service';
   declarations: [PassengerDashboardComponent, PassengerCountComponent, PassengerDetailComponent],
   providers : [PassengerDashboardService],
   exports: [PassengerDashboardComponent],
-  imports: [CommonModule]
+  imports: [CommonModule, HttpClientModule]
 })
 export class PassengerDashboardModule {
 
