@@ -5,6 +5,7 @@ interface Passenger {
   id: number;
   fullname: string;
   checkedIn: boolean;
+  checkInDate?: number;
 }
 @Component({
   selector: 'app-root',
@@ -14,23 +15,24 @@ interface Passenger {
       <ul>
       <li *ngFor="let passenger of passengers; let i = index">
       <span class="status" [class.checked-in]="passenger.checkedIn"></span> {{ i }} : {{passenger.fullname}}
+      <p>{{passenger | json}}</p>
+      <div class="date">
+        Check in Date :
+        {{passenger.checkedIn ?  (passenger.checkInDate | date: 'y MMMM dd') : 'Not Check In'}}
+      </div>
       </li>
-      </ul>
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-         <span [style.backgroundColor]="passenger.checkedIn ? 'green' : 'red' "> X </span> {{ i }} : {{passenger.fullname}}
-        </li>
       </ul>
     </div>
   `,
   styleUrls: ['app.component.scss']
 })
+
 export class AppComponent {
   passengers: Passenger [] = [{
     id : 1,
     fullname : 'Stephen',
-    checkedIn : true
+    checkedIn : true,
+    checkInDate : 1490742000000
   }, {
     id : 2,
     fullname : 'Rose',
