@@ -4,7 +4,7 @@ import {Component, OnInit} from '@angular/core';
   selector: 'app-not-found-component',
   template: `
     <div>
-      404 - Sorry no page at this adress
+      404 - Sorry no page at this address. <a routerLink="/">go home</a>
     </div>
   `
 })
