@@ -17,9 +17,6 @@ import { Passenger } from '../../model/passenger.interface';
         Check in Date :
         {{detail.checkedIn ?  (detail.checkInDate | date: 'y MMMM dd') : 'Not Check In'}}
       </div>
-      <div class="children">
-        Children : {{detail.children?.length || 0}}
-      </div>
       <button (click)="toggleEdit()">
        {{editing ? 'Done' : 'Edit' }}
       </button>
@@ -51,7 +48,7 @@ export class PassengerDetailComponent implements OnInit, OnChanges {
     this.detail.fullname = value;
   }
 
-  toggleEdit(){
+  toggleEdit() {
     if (this.editing) {
       this.edit.emit(this.detail);
     }

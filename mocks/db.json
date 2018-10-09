@@ -4,23 +4,26 @@
       "id": 1,
       "fullname": "Stephen",
       "checkedIn": true,
-      "checkInDate": 1490742000000
+      "checkInDate": 1490742000000,
+      "baggage" : ""
     },
     {
       "id": 2,
       "fullname": "Rose",
       "checkedIn": false,
-      "children": [{ "name": "Todd", "age": 12 }, { "name": "Titi", "age": 15 }]
+      "baggage" : ""
     },
     {
       "id": 3,
-      "fullname": "James",
-      "checkedIn": true
+      "fullname": "Todd",
+      "checkedIn": true,
+      "baggage" : ""
     },
     {
       "id": 4,
       "fullname": "Louise",
-      "checkedIn": true
+      "checkedIn": true,
+      "baggage" : ""
     }
   ]
 }
