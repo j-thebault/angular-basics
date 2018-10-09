@@ -8,11 +8,14 @@ import {PassengerDashboardComponent} from './containers/passenger-dashboard/pass
 import {PassengerCountComponent} from './components/passenger-count/passenger-count.component';
 import {PassengerDetailComponent} from './components/passenger-detail/passenger-detail.component';
 import {PassengerDashboardService} from './passenger-dashboard.service';
-import {PassengerViewerComponent} from './components/passenger-viewer/passenger-viewer.component';
+import {PassengerViewerComponent} from './containers/passenger-viewer/passenger-viewer.component';
 import {PassengerFormComponent} from './components/passenger-form/passenger-form.component';
 
 const routes: Routes = [
-  {path: 'passengers', component: PassengerDashboardComponent}
+  {path: 'passengers', children: [
+      {path: '', component: PassengerDashboardComponent},
+      {path: ':id', component: PassengerViewerComponent}
+    ]}
 ];
 
 @NgModule({

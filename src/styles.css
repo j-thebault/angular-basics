@@ -33,6 +33,7 @@ a {
 input,
 button {
   outline: 0;
+  margin-left: 5px;
 }
 input[type=text],
 input[type=email],

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { Passenger } from '../../model/passenger.interface';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Passenger} from '../../model/passenger.interface';
 
 @Component({
   selector: 'app-passenger-detail',
@@ -15,15 +15,19 @@ import { Passenger } from '../../model/passenger.interface';
       </div>
       <div class="date">
         Check in Date :
-        {{detail.checkedIn ?  (detail.checkInDate | date: 'y MMMM dd') : 'Not Check In'}}
+        {{detail.checkedIn ? (detail.checkInDate | date: 'y MMMM dd') : 'Not Check In'}}
       </div>
       <button (click)="toggleEdit()">
-       {{editing ? 'Done' : 'Edit' }}
+        {{editing ? 'Done' : 'Edit' }}
       </button>
 
       <button (click)="onRemove()">
-      Remove
-     </button>
+        Remove
+      </button>
+
+      <button (click)="goToPassenger()">
+        View
+      </button>
     </div>
   `
 })
@@ -33,16 +37,21 @@ export class PassengerDetailComponent implements OnInit, OnChanges {
   detail: Passenger;
 
   @Output()
-  remove: EventEmitter<any> = new EventEmitter();
+  remove: EventEmitter<Passenger> = new EventEmitter();
 
   @Output()
-  edit = new EventEmitter();
+  edit: EventEmitter<Passenger> = new EventEmitter();
+
+  @Output()
+  view: EventEmitter<Passenger> = new EventEmitter();
 
   editing = false;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onNameChanged(value: string) {
     this.detail.fullname = value;
@@ -57,6 +66,10 @@ export class PassengerDetailComponent implements OnInit, OnChanges {
 
   onRemove() {
     this.remove.emit(this.detail);
+  }
+
+  goToPassenger() {
+    this.view.emit(this.detail);
   }
 
   ngOnChanges(changes) {
