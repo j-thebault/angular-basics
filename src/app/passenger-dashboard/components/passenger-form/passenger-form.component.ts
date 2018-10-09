@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Passenger} from '../../model/passenger.interface';
 import {Baggage} from '../../model/baggage.interface';
 
@@ -6,16 +6,21 @@ import {Baggage} from '../../model/baggage.interface';
   selector: 'app-passenger-form',
   styleUrls: ['./passenger-form.component.scss'],
   template: `
-    <form #form="ngForm" novalidate>
+    <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
       {{detail | json}}
       <div>
         Passenger Name :
-        <input type="text" name="fullname" [ngModel]="detail?.fullname"/>
+        <input type="text" required name="fullname" #fullname="ngModel" [ngModel]="detail?.fullname"/>
+        <div class="error" *ngIf="fullname?.dirty && fullname?.errors?.required">
+          Passenger Name is required
+        </div>
       </div>
       <div>
         Passenger ID :
-        <input type="text" name="id" [ngModel]="detail?.id"/>
-        {{form.value | json}}
+        <input required type="text" #id="ngModel" name="id" [ngModel]="detail?.id"/>
+        <div class="error" *ngIf="id?.dirty && id?.errors?.required">
+          Id is required
+        </div>
       </div>
       <div>
         <label>
@@ -27,7 +32,6 @@ import {Baggage} from '../../model/baggage.interface';
         Check in Date:
         <input type="number" name="checkInDate" [ngModel]="detail?.checkInDate"/>
       </div>
-
       <div>
         Luggage :
         <select name="baggage" [ngModel]="detail?.baggage">
@@ -36,6 +40,10 @@ import {Baggage} from '../../model/baggage.interface';
           </option>
         </select>
       </div>
+
+      <button type="submit" [disabled]="form.invalid">
+        Update Passenger
+      </button>
     </form>
   `
 })
@@ -43,6 +51,9 @@ export class PassengerFormComponent implements OnInit {
 
   @Input()
   detail: Passenger;
+
+  @Output()
+  update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
   baggageTypes: Baggage[] = [{
     key: 'none',
@@ -68,6 +79,12 @@ export class PassengerFormComponent implements OnInit {
   toggleCheckIn(checkedIn: boolean) {
     if (checkedIn) {
       this.detail.checkInDate = Date.now();
+    }
+  }
+
+  handleSubmit(passenger: Passenger, isValid: boolean) {
+    if (isValid) {
+      this.update.emit(passenger);
     }
   }
 }

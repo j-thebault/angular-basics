@@ -1,29 +1,29 @@
 {
   "passengers": [
     {
+      "fullname": "Stephen B",
       "id": 1,
-      "fullname": "Stephen",
       "checkedIn": true,
-      "checkInDate": 1490742000000,
-      "baggage" : "hand-only"
+      "baggage": "hold-only",
+      "checkInDate": 1539075089227
     },
     {
       "id": 2,
       "fullname": "Rose",
       "checkedIn": false,
-      "baggage" : ""
+      "baggage": ""
     },
     {
       "id": 3,
       "fullname": "Todd",
       "checkedIn": true,
-      "baggage" : ""
+      "baggage": ""
     },
     {
       "id": 4,
       "fullname": "Louise",
       "checkedIn": true,
-      "baggage" : ""
+      "baggage": ""
     }
   ]
 }
